@@ -10,6 +10,7 @@ services:
     environment:
       - WHISPER_MODEL=large-v3-turbo
       - WHISPER__LANGUAGE=he
+      - WHISPER__API_KEY=h6YMnMj1NTVo21FXkFnlxkpSqbY0Zt2i8P0CYQtD
     mem_limit: 4g
     mem_reservation: 2g
     pull_policy: always
