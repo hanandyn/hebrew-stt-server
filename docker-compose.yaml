@@ -13,5 +13,11 @@ services:
     mem_limit: 4g
     mem_reservation: 2g
     pull_policy: always
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 300s
 volumes:
   whisper-data:
