@@ -1,0 +1,10 @@
+services:
+  hebrew-stt:
+    image: hanandyn/hebrew-stt:latest
+    container_name: hebrew-stt
+    ports:
+      - "8881:8881"
+    restart: unless-stopped
+    mem_limit: 4g
+    mem_reservation: 2g
+    pull_policy: always
