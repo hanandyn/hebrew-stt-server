@@ -17,6 +17,7 @@ app = Flask(__name__)
 _model = None
 
 MODEL_ID = "ivrit-ai/whisper-large-v3-turbo-ct2"
+MODEL_ROOT = "/app/models"
 
 
 def get_model():
@@ -30,6 +31,7 @@ def get_model():
             compute_type="int8",
             cpu_threads=4,
             num_workers=1,
+            download_root=MODEL_ROOT,
         )
         log.info("Model loaded")
     return _model
@@ -49,7 +51,6 @@ def transcribe():
     language = request.form.get("language", "he")
     response_format = request.form.get("response_format", "json")
 
-    # Save to temp file (faster-whisper needs a path)
     suffix = Path(audio_file.filename).suffix if audio_file.filename else ".wav"
     with tempfile.NamedTemporaryFile(suffix=suffix, delete=False) as tmp:
         audio_file.save(tmp)
