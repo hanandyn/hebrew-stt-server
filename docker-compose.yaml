@@ -1,10 +1,17 @@
 services:
   hebrew-stt:
-    image: hanandyn/hebrew-stt:latest
+    image: hwdsl2/whisper-server:latest
     container_name: hebrew-stt
     ports:
-      - "8881:8881"
+      - "9000:9000"
     restart: unless-stopped
+    volumes:
+      - whisper-data:/var/lib/whisper
+    environment:
+      - WHISPER_MODEL=large-v3-turbo
+      - WHISPER__LANGUAGE=he
     mem_limit: 4g
     mem_reservation: 2g
     pull_policy: always
+volumes:
+  whisper-data:
